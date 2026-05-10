@@ -48,6 +48,9 @@ Use cases will be grounded in typical scientific workloads.
 
 As our speakers are donating their time, we want to ensure a full and engaged event. Please reserve your spot only if you are committed to joining us for this workshop.
 
-## Recording
+## Recordings
 
-Will be available after the event.
+* [Python AI and fundamentals](https://youtu.be/ENOLU_7OkE0?si=vV2xUHHVPhLrKR5_)
+* Tailoring LLMs: RAG and Fine-Tuning ... coming soon.
+* AI Agents for Research ... coming soon.
+* AI-Assisted Research with Antigravity ... coming soon.
