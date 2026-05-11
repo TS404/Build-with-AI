@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Build with AI - Tailoring LLMs: RAG and Fine-Tuning – Build with AI</title>
+<title>Build with AI - Tailoring LLMs RAG and Fine-Tuning – Build with AI</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -355,13 +355,11 @@ gtag('config', 'G-344M4P3CHH', { 'anonymize_ip': true});
     <h2 id="toc-title">On this page</h2>
    
   <ul class="collapse">
-  <li><a href="#session-a-fine-tuning-a-large-language-model-on-your-own-data" id="toc-session-a-fine-tuning-a-large-language-model-on-your-own-data" class="nav-link active" data-scroll-target="#session-a-fine-tuning-a-large-language-model-on-your-own-data">Session A: Fine-Tuning a Large Language Model on Your Own Data</a></li>
+  <li><a href="#part-1-fine-tuning-a-large-language-model-on-your-own-data" id="toc-part-1-fine-tuning-a-large-language-model-on-your-own-data" class="nav-link active" data-scroll-target="#part-1-fine-tuning-a-large-language-model-on-your-own-data">Part 1: Fine-Tuning a Large Language Model on Your Own Data</a>
+  <ul class="collapse">
   <li><a href="#workshop-goals-learning-objectives" id="toc-workshop-goals-learning-objectives" class="nav-link" data-scroll-target="#workshop-goals-learning-objectives">Workshop Goals / Learning Objectives:</a></li>
   <li><a href="#what-is-a-large-language-model-llm" id="toc-what-is-a-large-language-model-llm" class="nav-link" data-scroll-target="#what-is-a-large-language-model-llm">What is a Large Language Model (LLM)? 🤖</a></li>
-  <li><a href="#what-is-fine-tuning" id="toc-what-is-fine-tuning" class="nav-link" data-scroll-target="#what-is-fine-tuning">What is Fine-Tuning? 🎯</a></li>
-  <li><a href="#hardware-requirements" id="toc-hardware-requirements" class="nav-link" data-scroll-target="#hardware-requirements">Hardware Requirements 🚀</a></li>
-  <li><a href="#frameworks-and-architectures" id="toc-frameworks-and-architectures" class="nav-link" data-scroll-target="#frameworks-and-architectures">Frameworks and Architectures</a></li>
-  <li><a href="#get-started" id="toc-get-started" class="nav-link" data-scroll-target="#get-started">Get started</a></li>
+  <li><a href="#get-started" id="toc-get-started" class="nav-link" data-scroll-target="#get-started">Get started 🟢</a></li>
   <li><a href="#example-1-fine-tuning-gemma-with-keras-on-a-tpu" id="toc-example-1-fine-tuning-gemma-with-keras-on-a-tpu" class="nav-link" data-scroll-target="#example-1-fine-tuning-gemma-with-keras-on-a-tpu">Example 1: Fine-Tuning Gemma with Keras on a TPU</a></li>
   <li><a href="#data-loading-and-preparation" id="toc-data-loading-and-preparation" class="nav-link" data-scroll-target="#data-loading-and-preparation">Data Loading and Preparation</a></li>
   <li><a href="#loading-the-pre-trained-model" id="toc-loading-the-pre-trained-model" class="nav-link" data-scroll-target="#loading-the-pre-trained-model">Loading the Pre-Trained Model</a></li>
@@ -369,8 +367,9 @@ gtag('config', 'G-344M4P3CHH', { 'anonymize_ip': true});
   <li><a href="#compile-and-fine-tune-the-model" id="toc-compile-and-fine-tune-the-model" class="nav-link" data-scroll-target="#compile-and-fine-tune-the-model">Compile and Fine-Tune the Model</a></li>
   <li><a href="#test-after-fine-tuning" id="toc-test-after-fine-tuning" class="nav-link" data-scroll-target="#test-after-fine-tuning">Test After Fine-Tuning</a></li>
   <li><a href="#example-2-a-quick-look-at-gpt-2" id="toc-example-2-a-quick-look-at-gpt-2" class="nav-link" data-scroll-target="#example-2-a-quick-look-at-gpt-2">Example 2: A Quick Look at GPT-2</a></li>
+  <li><a href="#example-3-transformers" id="toc-example-3-transformers" class="nav-link" data-scroll-target="#example-3-transformers">Example 3: Transformers</a></li>
   <li><a href="#how-you-can-adapt-this-for-your-research" id="toc-how-you-can-adapt-this-for-your-research" class="nav-link" data-scroll-target="#how-you-can-adapt-this-for-your-research">How You Can Adapt This For Your Research</a></li>
-  <li><a href="#links" id="toc-links" class="nav-link" data-scroll-target="#links">Links:</a></li>
+  </ul></li>
   </ul>
 <div class="toc-actions"><ul class="collapse"><li><a href="https://github.dev/gdgaiforscience/Build-with-AI/blob/main/session/02-a-finetune.ipynb" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li></ul></div></nav>
     </div>
@@ -380,7 +379,7 @@ gtag('config', 'G-344M4P3CHH', { 'anonymize_ip': true});
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><strong>Build with AI - Tailoring LLMs: RAG and Fine-Tuning</strong></h1>
+<h1 class="title"><strong>Build with AI - Tailoring LLMs RAG and Fine-Tuning</strong></h1>
 </div>
 
 
@@ -397,16 +396,18 @@ gtag('config', 'G-344M4P3CHH', { 'anonymize_ip': true});
 </header>
 
 
-<p><strong>Instructors:</strong> * Dr Nate Butterworth (Google XWF)</p>
+<p><strong>Instructors:</strong></p>
+<ul>
+<li>Dr Nate Butterworth (Google XWF)</li>
+</ul>
 <p><strong>Date:</strong> May 14, 2026</p>
-<section id="session-a-fine-tuning-a-large-language-model-on-your-own-data" class="level2">
-<h2 class="anchored" data-anchor-id="session-a-fine-tuning-a-large-language-model-on-your-own-data">Session A: Fine-Tuning a Large Language Model on Your Own Data</h2>
-</section>
+<section id="part-1-fine-tuning-a-large-language-model-on-your-own-data" class="level1">
+<h1>Part 1: Fine-Tuning a Large Language Model on Your Own Data</h1>
 <section id="workshop-goals-learning-objectives" class="level2">
 <h2 class="anchored" data-anchor-id="workshop-goals-learning-objectives">Workshop Goals / Learning Objectives:</h2>
 <ul>
 <li>Understand the concepts of pre-training and fine-tuning for Large Language Models (LLMs).</li>
-<li>Recognize the hardware requirements and limitations (GPU/TPU/CPU) for training.</li>
+<li>Recognise the hardware requirements and limitations (GPU/TPU/CPU) for training.</li>
 <li>Prepare a custom dataset for fine-tuning.</li>
 <li>Fine-tune an LLM using Keras with a TPU backend.</li>
 <li>Fine-tune an LLM using the transformers library with a GPU backend.</li>
@@ -417,38 +418,39 @@ gtag('config', 'G-344M4P3CHH', { 'anonymize_ip': true});
 </section>
 <section id="what-is-a-large-language-model-llm" class="level2">
 <h2 class="anchored" data-anchor-id="what-is-a-large-language-model-llm">What is a Large Language Model (LLM)? 🤖</h2>
-<p>Think of a pre-trained LLM like a brilliant new research assistant who has read nearly the entire public internet. They have a vast general knowledge and can write essays, summarize articles, and answer questions on a huge range of topics. However, they haven’t read your lab’s specific protocols, your private research data, or the niche publications in your specialized field, and they make a lot of mistakes whilst trying to appear confident that they are correct (even when they are not).</p>
+<p>Think of a pre-trained LLM (like Gemini, Mistral, Claude, ChatGPT) like a brilliant new research assistant who has read nearly the entire public internet. They have a vast general knowledge and can write essays, summarise articles, and answer questions on a huge range of topics. However, they haven’t read your lab’s specific protocols, your private research data, or the niche publications in your specialised field, and they make a lot of mistakes whilst trying to appear confident that they are correct (even when they are not). They are also expensive, but they operate pretty quickly.</p>
 <p>This “general knowledge” comes from a process called pre-training, where the model is shown trillions of words of text and learns the patterns, grammar, and facts of human language.</p>
-</section>
-<section id="what-is-fine-tuning" class="level2">
-<h2 class="anchored" data-anchor-id="what-is-fine-tuning">What is Fine-Tuning? 🎯</h2>
+<section id="what-is-fine-tuning" class="level3">
+<h3 class="anchored" data-anchor-id="what-is-fine-tuning">What is Fine-Tuning? 🎯</h3>
 <p>Fine-tuning is the process of taking that pre-trained model and training it for a bit longer on your own, smaller, domain-specific dataset, or teaching it a specific task. It’s like giving your new research assistant a curated stack of your lab’s most important papers and data. You aren’t teaching them language from scratch; you’re adapting their existing knowledge to your specific needs.</p>
 <p>Through fine-tuning, the model can learn your domain’s specific vocabulary, understand relationships between concepts in your field, and can adopt a specific style or format for its responses.</p>
 </section>
-<section id="hardware-requirements" class="level2">
-<h2 class="anchored" data-anchor-id="hardware-requirements">Hardware Requirements 🚀</h2>
+<section id="hardware-requirements" class="level3">
+<h3 class="anchored" data-anchor-id="hardware-requirements">Hardware Requirements ⚙️</h3>
 <p>Training and fine-tuning LLMs involves billions of calculations. A standard computer processor (CPU) can handle complex, sequential, singular tasks. However, training requires thousands of simple tasks at the exact same time.</p>
 <p>This is where Graphics Processing Units (GPUs) and Tensor Processing Units (TPUs) come in. They are specialised chips designed for massive parallel computation, making them great for deep learning. Fine-tuning even a small LLM is practically impossible without one. For this lesson, we’ll use Colab’s free-tier TPUs or GPUs.</p>
 </section>
-<section id="frameworks-and-architectures" class="level2">
-<h2 class="anchored" data-anchor-id="frameworks-and-architectures">Frameworks and Architectures</h2>
-<section id="model-architecture-the-brains" class="level3">
-<h3 class="anchored" data-anchor-id="model-architecture-the-brains">Model Architecture (The “Brains”)</h3>
+<section id="frameworks-and-architectures" class="level3">
+<h3 class="anchored" data-anchor-id="frameworks-and-architectures">Frameworks and Architectures 🏗️</h3>
+<section id="model-architecture-the-brains" class="level4">
+<h4 class="anchored" data-anchor-id="model-architecture-the-brains">Model Architecture (The “Brains”)</h4>
 <p>This is the design of the neural network itself. Examples include Gemma, GPT-2, Llama, etc. These are the pre-trained models we will adapt.</p>
 </section>
-<section id="weights" class="level3">
-<h3 class="anchored" data-anchor-id="weights">Weights</h3>
+<section id="weights" class="level4">
+<h4 class="anchored" data-anchor-id="weights">Weights</h4>
 <p>This the “trained model” that the architechutre has learned from data. Often the “weights” and “architechure” are referred to collectively.</p>
 </section>
-<section id="framework" class="level3">
-<h3 class="anchored" data-anchor-id="framework">Framework</h3>
+<section id="framework" class="level4">
+<h4 class="anchored" data-anchor-id="framework">Framework</h4>
 <p>These are the software libraries that provide the tools to load, manipulate, and train the models. We will use <strong>Keras</strong> (a user-friendly, high-level API). Other popular frameworks include <strong>Hugging Face transformers</strong>, <strong>Tensorflow</strong>, <strong>PyTorch</strong>, and more.</p>
-<p><em>You must use a framework that supports the model architecture you want to work with or vice versa!</em></p>
+<p><em>You must use a framework that supports the model architecture you want to work with and vice versa!</em></p>
+</section>
 </section>
 </section>
 <section id="get-started" class="level2">
-<h2 class="anchored" data-anchor-id="get-started">Get started</h2>
+<h2 class="anchored" data-anchor-id="get-started">Get started 🟢</h2>
 <p>Visit <a href="https://colab.research.google.com/">Google Colab</a> and start a “New notebook in Drive”.</p>
+<p>You can also use <a href="https://www.kaggle.com/code">Kaggle Notebooks</a> keeping in mind you will have to verify your account to use GPU/TPU resources.</p>
 </section>
 <section id="example-1-fine-tuning-gemma-with-keras-on-a-tpu" class="level2">
 <h2 class="anchored" data-anchor-id="example-1-fine-tuning-gemma-with-keras-on-a-tpu">Example 1: Fine-Tuning Gemma with Keras on a TPU</h2>
@@ -472,10 +474,10 @@ gtag('config', 'G-344M4P3CHH', { 'anonymize_ip': true});
 </div>
 <div id="cell-4" class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Update python libraries to use TPU in a kaggle/colab notebook</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="co"># jax 0.6.2 and keras-hub 0.21.1 seem to work</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="co"># jax 0.7.2 and keras-hub 0.29.0 seem to work</span></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="op">!</span>pip install <span class="op">-</span>U pip <span class="op">-</span>q</span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="op">!</span>pip install <span class="op">-</span>U <span class="st">"jax[tpu]"</span><span class="op">==</span><span class="fl">0.6.2</span> <span class="op">-</span>q</span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="op">!</span>pip install keras<span class="op">-</span>hub<span class="op">==</span><span class="fl">0.21.1</span> <span class="op">-</span>U <span class="op">-</span>q</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="co"># !pip install -U "jax[tpu]"==0.7.2 -q</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="op">!</span>pip install keras<span class="op">-</span>hub<span class="op">==</span><span class="fl">0.29.0</span> <span class="op">-</span>U <span class="op">-</span>q</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div id="cell-5" class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># --- Environment Setup for Keras with JAX on a TPU ---</span></span>
@@ -673,25 +675,185 @@ gtag('config', 'G-344M4P3CHH', { 'anonymize_ip': true});
 <span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>causal_lm.generate(prompt)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
+<section id="example-3-transformers" class="level2">
+<h2 class="anchored" data-anchor-id="example-3-transformers">Example 3: Transformers</h2>
+<p>For this example we use a popular library for advanced NLP work, <a href="https://huggingface.co/docs/transformers/en/index">Hugging Face Transformers</a>. This library is extremely powerful and provides fine-grained control over the entire process. The workflow is more verbose than Keras but is the standard in many research and production environments.</p>
+<p><em>This example is configured for use with GPU environment in Kaggle or Colab</em></p>
+<div id="cell-31" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="op">!</span>pip install <span class="op">-</span>U torchao<span class="op">==</span><span class="fl">0.17.0</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div id="cell-32" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> kagglehub</span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>kagglehub.login()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div id="cell-33" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="co"># We'll need several components from the transformers ecosystem.</span></span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os</span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> torch</span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> datasets <span class="im">import</span> Dataset</span>
+<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> peft <span class="im">import</span> LoraConfig, get_peft_model</span>
+<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> transformers <span class="im">import</span> (</span>
+<span id="cb24-8"><a href="#cb24-8" aria-hidden="true" tabindex="-1"></a>    AutoTokenizer, </span>
+<span id="cb24-9"><a href="#cb24-9" aria-hidden="true" tabindex="-1"></a>    AutoModelForCausalLM, </span>
+<span id="cb24-10"><a href="#cb24-10" aria-hidden="true" tabindex="-1"></a>    TrainingArguments, </span>
+<span id="cb24-11"><a href="#cb24-11" aria-hidden="true" tabindex="-1"></a>    Trainer,</span>
+<span id="cb24-12"><a href="#cb24-12" aria-hidden="true" tabindex="-1"></a>    DataCollatorForLanguageModeling</span>
+<span id="cb24-13"><a href="#cb24-13" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div id="cell-34" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>path_data <span class="op">=</span> kagglehub.dataset_download(<span class="st">"gpreda/medquad"</span>)</span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>path_gemma <span class="op">=</span> kagglehub.model_download(<span class="st">"google/gemma-3/transformers/gemma-3-270m-it"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div id="cell-35" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Define the path to the model we want to fine-tune.</span></span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>model_id <span class="op">=</span> path_gemma</span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a><span class="co"># The tokenizer converts human-readable text into a sequence of numerical tokens.</span></span>
+<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a>tokenizer <span class="op">=</span> AutoTokenizer.from_pretrained(model_id)</span>
+<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-7"><a href="#cb26-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Ensure pad_token is set (Gemma models sometimes don't have it set by default)</span></span>
+<span id="cb26-8"><a href="#cb26-8" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> tokenizer.pad_token <span class="kw">is</span> <span class="va">None</span>:</span>
+<span id="cb26-9"><a href="#cb26-9" aria-hidden="true" tabindex="-1"></a>    tokenizer.pad_token <span class="op">=</span> tokenizer.eos_token</span>
+<span id="cb26-10"><a href="#cb26-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-11"><a href="#cb26-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Load the pre-trained model. Let transformers default to SDPA (Scaled Dot Product Attention) automatically.</span></span>
+<span id="cb26-12"><a href="#cb26-12" aria-hidden="true" tabindex="-1"></a><span class="co"># `device_map="cuda"` explicitly tells the library to load the model onto the first available GPU.</span></span>
+<span id="cb26-13"><a href="#cb26-13" aria-hidden="true" tabindex="-1"></a>model <span class="op">=</span> AutoModelForCausalLM.from_pretrained(</span>
+<span id="cb26-14"><a href="#cb26-14" aria-hidden="true" tabindex="-1"></a>    model_id,</span>
+<span id="cb26-15"><a href="#cb26-15" aria-hidden="true" tabindex="-1"></a>    device_map<span class="op">=</span><span class="st">"cuda"</span></span>
+<span id="cb26-16"><a href="#cb26-16" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div id="cell-36" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="co"># --- Load and Prepare the Data ---</span></span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.read_csv(<span class="ss">f"</span><span class="sc">{</span>path_data<span class="sc">}</span><span class="ss">/medquad.csv"</span>)</span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Filter the data to get rows related to "pernicious anemia"</span></span>
+<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a>df_subset_mask <span class="op">=</span> df[<span class="st">'question'</span>].<span class="bu">str</span>.contains(<span class="st">'pernicious anemia'</span>, case<span class="op">=</span><span class="va">False</span>, na<span class="op">=</span><span class="va">False</span>) <span class="op">|</span> <span class="op">\</span></span>
+<span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a>                 df[<span class="st">'answer'</span>].<span class="bu">str</span>.contains(<span class="st">'pernicious anemia'</span>, case<span class="op">=</span><span class="va">False</span>, na<span class="op">=</span><span class="va">False</span>) <span class="op">|</span> <span class="op">\</span></span>
+<span id="cb27-7"><a href="#cb27-7" aria-hidden="true" tabindex="-1"></a>                 df[<span class="st">'focus_area'</span>].<span class="bu">str</span>.contains(<span class="st">'pernicious anemia'</span>, case<span class="op">=</span><span class="va">False</span>, na<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb27-8"><a href="#cb27-8" aria-hidden="true" tabindex="-1"></a>df_subset <span class="op">=</span> df[df_subset_mask].copy()</span>
+<span id="cb27-9"><a href="#cb27-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-10"><a href="#cb27-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert the dataframe into a transformers-compatible dataset</span></span>
+<span id="cb27-11"><a href="#cb27-11" aria-hidden="true" tabindex="-1"></a>dataset <span class="op">=</span> Dataset.from_pandas(df_subset)</span>
+<span id="cb27-12"><a href="#cb27-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-13"><a href="#cb27-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Tokenize the dataset using chat templates to align with the instruction-tuned model's tokens</span></span>
+<span id="cb27-14"><a href="#cb27-14" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> format_and_tokenize(examples):</span>
+<span id="cb27-15"><a href="#cb27-15" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Create a formatted string for each question-answer pair. This teaches the model the structure of the task.</span></span>
+<span id="cb27-16"><a href="#cb27-16" aria-hidden="true" tabindex="-1"></a>    formatted_texts <span class="op">=</span> []</span>
+<span id="cb27-17"><a href="#cb27-17" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> q, cot, r <span class="kw">in</span> <span class="bu">zip</span>(examples[<span class="st">'question'</span>], examples[<span class="st">'focus_area'</span>], examples[<span class="st">'answer'</span>]):</span>
+<span id="cb27-18"><a href="#cb27-18" aria-hidden="true" tabindex="-1"></a>        chat <span class="op">=</span> [</span>
+<span id="cb27-19"><a href="#cb27-19" aria-hidden="true" tabindex="-1"></a>            {<span class="st">"role"</span>: <span class="st">"user"</span>, <span class="st">"content"</span>: <span class="ss">f"Focus Area: </span><span class="sc">{</span>cot<span class="sc">}</span><span class="ch">\n</span><span class="ss">Question: </span><span class="sc">{</span>q<span class="sc">}</span><span class="ss">"</span>},</span>
+<span id="cb27-20"><a href="#cb27-20" aria-hidden="true" tabindex="-1"></a>            {<span class="st">"role"</span>: <span class="st">"assistant"</span>, <span class="st">"content"</span>: r}</span>
+<span id="cb27-21"><a href="#cb27-21" aria-hidden="true" tabindex="-1"></a>        ]</span>
+<span id="cb27-22"><a href="#cb27-22" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Use the template to create the exact string format Gemma expects</span></span>
+<span id="cb27-23"><a href="#cb27-23" aria-hidden="true" tabindex="-1"></a>        text <span class="op">=</span> tokenizer.apply_chat_template(chat, tokenize<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb27-24"><a href="#cb27-24" aria-hidden="true" tabindex="-1"></a>        formatted_texts.append(text)</span>
+<span id="cb27-25"><a href="#cb27-25" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb27-26"><a href="#cb27-26" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Tokenize the natively formatted text</span></span>
+<span id="cb27-27"><a href="#cb27-27" aria-hidden="true" tabindex="-1"></a>    <span class="co"># The tokenizer converts the text to token IDs.</span></span>
+<span id="cb27-28"><a href="#cb27-28" aria-hidden="true" tabindex="-1"></a>    <span class="co"># `truncation=True` will cut off texts that are longer than the model's max sequence length.</span></span>
+<span id="cb27-29"><a href="#cb27-29" aria-hidden="true" tabindex="-1"></a>    <span class="co"># `max_length` defines a uniform length texts padded so they all have the same length.</span></span>
+<span id="cb27-30"><a href="#cb27-30" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> tokenizer(formatted_texts, truncation<span class="op">=</span><span class="va">True</span>, max_length<span class="op">=</span><span class="dv">1024</span>)</span>
+<span id="cb27-31"><a href="#cb27-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-32"><a href="#cb27-32" aria-hidden="true" tabindex="-1"></a><span class="co"># Map and clean up old columns to prevent tensor conflicts</span></span>
+<span id="cb27-33"><a href="#cb27-33" aria-hidden="true" tabindex="-1"></a>tokenized_dataset <span class="op">=</span> dataset.<span class="bu">map</span>(format_and_tokenize, batched<span class="op">=</span><span class="va">True</span>, remove_columns<span class="op">=</span>dataset.column_names)</span>
+<span id="cb27-34"><a href="#cb27-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-35"><a href="#cb27-35" aria-hidden="true" tabindex="-1"></a><span class="co"># Use a DataCollator to dynamically pad and handle next-token prediction "labels" automatically</span></span>
+<span id="cb27-36"><a href="#cb27-36" aria-hidden="true" tabindex="-1"></a>data_collator <span class="op">=</span> DataCollatorForLanguageModeling(tokenizer<span class="op">=</span>tokenizer, mlm<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb27-37"><a href="#cb27-37" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-38"><a href="#cb27-38" aria-hidden="true" tabindex="-1"></a><span class="co"># --- Generate a Response Before Fine-Tuning ---</span></span>
+<span id="cb27-39"><a href="#cb27-39" aria-hidden="true" tabindex="-1"></a>prompt <span class="op">=</span> <span class="st">"What is pernicious anemia?"</span></span>
+<span id="cb27-40"><a href="#cb27-40" aria-hidden="true" tabindex="-1"></a>chat <span class="op">=</span> [{<span class="st">"role"</span>: <span class="st">"user"</span>, <span class="st">"content"</span>: prompt}]</span>
+<span id="cb27-41"><a href="#cb27-41" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-42"><a href="#cb27-42" aria-hidden="true" tabindex="-1"></a><span class="co"># apply_chat_template directly returns a BatchEncoding dict!</span></span>
+<span id="cb27-43"><a href="#cb27-43" aria-hidden="true" tabindex="-1"></a>inputs <span class="op">=</span> tokenizer.apply_chat_template(</span>
+<span id="cb27-44"><a href="#cb27-44" aria-hidden="true" tabindex="-1"></a>    chat, </span>
+<span id="cb27-45"><a href="#cb27-45" aria-hidden="true" tabindex="-1"></a>    return_tensors<span class="op">=</span><span class="st">"pt"</span>, </span>
+<span id="cb27-46"><a href="#cb27-46" aria-hidden="true" tabindex="-1"></a>    add_generation_prompt<span class="op">=</span><span class="va">True</span>,</span>
+<span id="cb27-47"><a href="#cb27-47" aria-hidden="true" tabindex="-1"></a>    return_dict<span class="op">=</span><span class="va">True</span></span>
+<span id="cb27-48"><a href="#cb27-48" aria-hidden="true" tabindex="-1"></a>).to(<span class="st">"cuda"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div id="cell-37" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"--- Response Before Fine-Tuning ---"</span>)</span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>outputs_raw <span class="op">=</span> model.generate(<span class="op">**</span>inputs, max_new_tokens<span class="op">=</span><span class="dv">100</span>)</span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>response_raw <span class="op">=</span> tokenizer.decode(outputs_raw[<span class="dv">0</span>], skip_special_tokens<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(response_raw)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div id="cell-38" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="co"># --- LoRA and Trainer Setup ---</span></span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>lora_config <span class="op">=</span> LoraConfig(</span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>    r<span class="op">=</span><span class="dv">16</span>, <span class="co"># Rank of the update matrices. Lower rank means fewer parameters to train.</span></span>
+<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a>    lora_alpha<span class="op">=</span><span class="dv">32</span>, <span class="co"># A scaling factor for the learned weights.</span></span>
+<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a>    target_modules<span class="op">=</span>[<span class="st">"q_proj"</span>, <span class="st">"k_proj"</span>, <span class="st">"v_proj"</span>, <span class="st">"o_proj"</span>], <span class="co"># which layers of the model to attach adapters to.</span></span>
+<span id="cb29-6"><a href="#cb29-6" aria-hidden="true" tabindex="-1"></a>    lora_dropout<span class="op">=</span><span class="fl">0.05</span>, <span class="co"># Helps prevent overfitting.</span></span>
+<span id="cb29-7"><a href="#cb29-7" aria-hidden="true" tabindex="-1"></a>    bias<span class="op">=</span><span class="st">"none"</span>,</span>
+<span id="cb29-8"><a href="#cb29-8" aria-hidden="true" tabindex="-1"></a>    task_type<span class="op">=</span><span class="st">"CAUSAL_LM"</span></span>
+<span id="cb29-9"><a href="#cb29-9" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb29-10"><a href="#cb29-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-11"><a href="#cb29-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Add LoRA adapter to the model</span></span>
+<span id="cb29-12"><a href="#cb29-12" aria-hidden="true" tabindex="-1"></a>model <span class="op">=</span> get_peft_model(model, lora_config)</span>
+<span id="cb29-13"><a href="#cb29-13" aria-hidden="true" tabindex="-1"></a><span class="co"># show how many parameters are actually being trained, demonstrating LoRA's efficiency.</span></span>
+<span id="cb29-14"><a href="#cb29-14" aria-hidden="true" tabindex="-1"></a>model.print_trainable_parameters()</span>
+<span id="cb29-15"><a href="#cb29-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-16"><a href="#cb29-16" aria-hidden="true" tabindex="-1"></a>training_args <span class="op">=</span> TrainingArguments(</span>
+<span id="cb29-17"><a href="#cb29-17" aria-hidden="true" tabindex="-1"></a>    output_dir<span class="op">=</span><span class="st">"./gemma-finetuned-pernicious-anemia"</span>,</span>
+<span id="cb29-18"><a href="#cb29-18" aria-hidden="true" tabindex="-1"></a>    num_train_epochs<span class="op">=</span><span class="dv">1</span>,</span>
+<span id="cb29-19"><a href="#cb29-19" aria-hidden="true" tabindex="-1"></a>    per_device_train_batch_size<span class="op">=</span><span class="dv">1</span>,</span>
+<span id="cb29-20"><a href="#cb29-20" aria-hidden="true" tabindex="-1"></a>    learning_rate<span class="op">=</span><span class="fl">1e-4</span>,</span>
+<span id="cb29-21"><a href="#cb29-21" aria-hidden="true" tabindex="-1"></a>    report_to<span class="op">=</span><span class="st">"none"</span>,</span>
+<span id="cb29-22"><a href="#cb29-22" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb29-23"><a href="#cb29-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-24"><a href="#cb29-24" aria-hidden="true" tabindex="-1"></a><span class="co"># Initialize the Trainer</span></span>
+<span id="cb29-25"><a href="#cb29-25" aria-hidden="true" tabindex="-1"></a>trainer <span class="op">=</span> Trainer(</span>
+<span id="cb29-26"><a href="#cb29-26" aria-hidden="true" tabindex="-1"></a>    model<span class="op">=</span>model,</span>
+<span id="cb29-27"><a href="#cb29-27" aria-hidden="true" tabindex="-1"></a>    args<span class="op">=</span>training_args,</span>
+<span id="cb29-28"><a href="#cb29-28" aria-hidden="true" tabindex="-1"></a>    train_dataset<span class="op">=</span>tokenized_dataset,</span>
+<span id="cb29-29"><a href="#cb29-29" aria-hidden="true" tabindex="-1"></a>    data_collator<span class="op">=</span>data_collator, <span class="co"># Injected modern data collator</span></span>
+<span id="cb29-30"><a href="#cb29-30" aria-hidden="true" tabindex="-1"></a>    processing_class<span class="op">=</span>tokenizer,</span>
+<span id="cb29-31"><a href="#cb29-31" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div id="cell-39" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb30"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"--- Starting Fine-Tuning ---"</span>)</span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>trainer.train()</span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"--- Fine-Tuning Complete ---"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div id="cell-40" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Clean up memory</span></span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a><span class="kw">del</span> trainer</span>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>torch.cuda.empty_cache()</span>
+<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-5"><a href="#cb31-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Merge the LoRA adapter and unload the PEFT model, set model to eval/inference</span></span>
+<span id="cb31-6"><a href="#cb31-6" aria-hidden="true" tabindex="-1"></a>model <span class="op">=</span> model.merge_and_unload()</span>
+<span id="cb31-7"><a href="#cb31-7" aria-hidden="true" tabindex="-1"></a>model.<span class="bu">eval</span>()</span>
+<span id="cb31-8"><a href="#cb31-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-9"><a href="#cb31-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"--- Response After Fine-Tuning ---"</span>)</span>
+<span id="cb31-10"><a href="#cb31-10" aria-hidden="true" tabindex="-1"></a>outputs_ft <span class="op">=</span> model.generate(<span class="op">**</span>inputs, max_new_tokens<span class="op">=</span><span class="dv">100</span>)</span>
+<span id="cb31-11"><a href="#cb31-11" aria-hidden="true" tabindex="-1"></a>response_ft <span class="op">=</span> tokenizer.decode(outputs_ft[<span class="dv">0</span>], skip_special_tokens<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb31-12"><a href="#cb31-12" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(response_ft)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
 <section id="how-you-can-adapt-this-for-your-research" class="level2">
 <h2 class="anchored" data-anchor-id="how-you-can-adapt-this-for-your-research">How You Can Adapt This For Your Research</h2>
 <p>The examples above use a medical question-answering dataset, but the workflow is highly adaptable.</p>
 <p>Understand your task. Pick a model. Pick a framework. Build your pipeline!</p>
 <p>The key is to structure your data into what your framework/model requires, that also teaches the model how to perform the task you want.</p>
-<p>To see an approach using the Transformers framework (instead of Keras) try *Fine Tune with Transformers (GPU accelerator required)** <a href="https://colab.research.google.com/drive/1sJviybARN36t3d_i-gfmc0zDs51WDgzz?usp=sharing"><img src="https://colab.research.google.com/assets/colab-badge.svg" class="img-fluid" alt="Colab"></a> or <a href="https://www.kaggle.com/code/astrobutter/gdg-ai-for-science-finetuning-transformers"><img src="https://kaggle.com/static/images/open-in-kaggle.svg" class="img-fluid" alt="Kaggle"></a></p>
+<p>To see this Transformers example directly in <a href="https://colab.research.google.com/drive/1sJviybARN36t3d_i-gfmc0zDs51WDgzz?usp=sharing"><img src="https://colab.research.google.com/assets/colab-badge.svg" class="img-fluid" alt="Colab"></a> or <a href="https://www.kaggle.com/code/astrobutter/gdg-ai-for-science-finetuning-transformers"><img src="https://kaggle.com/static/images/open-in-kaggle.svg" class="img-fluid" alt="Kaggle"></a></p>
+<section id="links" class="level3">
+<h3 class="anchored" data-anchor-id="links">Links:</h3>
+<ul>
+<li>KerasHub Documentation: https://keras.io/keras_hub/api/models/gemma3/</li>
+<li>Good Huggingface training demo: https://www.youtube.com/watch?v=uikZs6y0qgI</li>
+<li>Gemma 3 fine tune documentation: https://ai.google.dev/gemma/docs/core/lora_tuning</li>
+<li>Gemma 3 on Kaggle: https://www.kaggle.com/models/google/gemma-3</li>
+<li>GPT-2 on Kaggle: https://www.kaggle.com/models/keras/gpt2</li>
+<li>Fine Tune Gemini: https://cloud.google.com/vertex-ai/generative-ai/docs/models/gemini-use-supervised-tuning (deprecated AI studio method: https://ai.google.dev/gemini-api/docs/model-tuning)</li>
+<li>Huggingface Transformers documentation: https://huggingface.co/docs/transformers/en/index</li>
+<li>Huggingface Sentence-Transformers documentation: https://huggingface.co/sentence-transformers</li>
+</ul>
+
+
 </section>
-<section id="links" class="level2">
-<h2 class="anchored" data-anchor-id="links">Links:</h2>
-<p>KerasHub Documentation: https://keras.io/keras_hub/api/models/gemma3/</p>
-<p>Good Huggingface training demo: https://www.youtube.com/watch?v=uikZs6y0qgI</p>
-<p>Gemma 3 fine tune documentation: https://ai.google.dev/gemma/docs/core/lora_tuning</p>
-<p>Gemma 3 on Kaggle: https://www.kaggle.com/models/google/gemma-3</p>
-<p>GPT-2 on Kaggle: https://www.kaggle.com/models/keras/gpt2</p>
-<p>Fine Tune Gemini: https://cloud.google.com/vertex-ai/generative-ai/docs/models/gemini-use-supervised-tuning (deprecated AI studio method: https://ai.google.dev/gemini-api/docs/model-tuning)</p>
-<p>Huggingface Transformers documentation: https://huggingface.co/docs/transformers/en/index</p>
-<p>Huggingface Sentence-Transformers documentation: https://huggingface.co/sentence-transformers</p>
-
-
+</section>
 </section>
 
 </main> <!-- /main -->
