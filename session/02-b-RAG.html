@@ -362,12 +362,12 @@ gtag('config', 'G-344M4P3CHH', { 'anonymize_ip': true});
   <li><a href="#part-2-retrieval-augmented-generation-rag" id="toc-part-2-retrieval-augmented-generation-rag" class="nav-link active" data-scroll-target="#part-2-retrieval-augmented-generation-rag">Part 2: Retrieval-Augmented Generation (RAG)</a>
   <ul class="collapse">
   <li><a href="#fine-tuning-vs.-rag-vs." id="toc-fine-tuning-vs.-rag-vs." class="nav-link" data-scroll-target="#fine-tuning-vs.-rag-vs.">Fine-Tuning vs.&nbsp;RAG | 🧠 vs.&nbsp;📚</a></li>
-  <li><a href="#the-rag-pipeline" id="toc-the-rag-pipeline" class="nav-link" data-scroll-target="#the-rag-pipeline">The RAG Pipeline</a></li>
   <li><a href="#get-started" id="toc-get-started" class="nav-link" data-scroll-target="#get-started">Get started</a></li>
   <li><a href="#step-0-prepare-our-environment-and-download-our-modelsdata" id="toc-step-0-prepare-our-environment-and-download-our-modelsdata" class="nav-link" data-scroll-target="#step-0-prepare-our-environment-and-download-our-modelsdata">Step 0: Prepare our environment and download our models/data</a></li>
   <li><a href="#step-1-setup-and-prepare-the-knowledge-base" id="toc-step-1-setup-and-prepare-the-knowledge-base" class="nav-link" data-scroll-target="#step-1-setup-and-prepare-the-knowledge-base">Step 1: Setup and Prepare the Knowledge Base</a></li>
   <li><a href="#step-2-the-retrieval---finding-relevant-knowledge" id="toc-step-2-the-retrieval---finding-relevant-knowledge" class="nav-link" data-scroll-target="#step-2-the-retrieval---finding-relevant-knowledge">Step 2: The “Retrieval” - Finding Relevant Knowledge</a></li>
   <li><a href="#step-3-the-generation---answering-the-question" id="toc-step-3-the-generation---answering-the-question" class="nav-link" data-scroll-target="#step-3-the-generation---answering-the-question">Step 3: The “Generation” - Answering the Question</a></li>
+  <li><a href="#advanced-rag" id="toc-advanced-rag" class="nav-link" data-scroll-target="#advanced-rag">Advanced RAG</a></li>
   </ul></li>
   </ul>
 <div class="toc-actions"><ul class="collapse"><li><a href="https://github.dev/gdgaiforscience/Build-with-AI/blob/main/session/02-b-RAG.ipynb" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li></ul></div></nav>
@@ -395,13 +395,16 @@ gtag('config', 'G-344M4P3CHH', { 'anonymize_ip': true});
 </header>
 
 
-<p><strong>Instructors:</strong> * Dr Nate Butterworth (Google XWF)</p>
+<p><strong>Instructors:</strong></p>
+<ul>
+<li>Dr Nate Butterworth (Google XWF)</li>
+</ul>
 <p><strong>Date:</strong> May 14, 2026</p>
 <section id="part-2-retrieval-augmented-generation-rag" class="level1">
 <h1>Part 2: Retrieval-Augmented Generation (RAG)</h1>
 <p>…and how it is <del>better/worse/complimentary</del> different to Fine Tuning</p>
 <p>In fine-tuning we update a model’s internal weights to teach it new knowledge. But the process is time-consuming, (computationally) expensive, and the knowledge can become outdated.</p>
-<p>Now, we explore a powerful and complementary technique: Retrieval-Augmented Generation (RAG).</p>
+<p>Now, we explore a powerful and complementary technique to adapt LLMs to your data and use-cases: Retrieval-Augmented Generation (RAG).</p>
 <section id="fine-tuning-vs.-rag-vs." class="level2">
 <h2 class="anchored" data-anchor-id="fine-tuning-vs.-rag-vs.">Fine-Tuning vs.&nbsp;RAG | 🧠 vs.&nbsp;📚</h2>
 <section id="fine-tuning" class="level3">
@@ -422,10 +425,10 @@ gtag('config', 'G-344M4P3CHH', { 'anonymize_ip': true});
 </ul>
 <p>RAG is often cheaper, faster, and allows you to use real-time data. Let’s see how it works in practice.</p>
 </section>
-</section>
-<section id="the-rag-pipeline" class="level2">
-<h2 class="anchored" data-anchor-id="the-rag-pipeline">The RAG Pipeline</h2>
+<section id="the-rag-pipeline" class="level3">
+<h3 class="anchored" data-anchor-id="the-rag-pipeline">The RAG Pipeline</h3>
 <p>Our goal is to build a system that can answer medical questions using a knowledge base of documents. The LLM itself knows nothing about these specific documents; it will only use the information we find for it.</p>
+</section>
 </section>
 <section id="get-started" class="level2">
 <h2 class="anchored" data-anchor-id="get-started">Get started</h2>
@@ -739,9 +742,21 @@ CPU times: user 41.2 s, sys: 4.43 s, total: 45.7 s
 Wall time: 18.6 s</code></pre>
 </div>
 </div>
-
-
 </section>
+</section>
+<section id="advanced-rag" class="level2">
+<h2 class="anchored" data-anchor-id="advanced-rag">Advanced RAG</h2>
+<p>This simple “find and inject” method often fails because simple similarity doesn’t always equal relevance. Modern RAG systems add several more layers:</p>
+<ul>
+<li><strong>Query Transformation:</strong> Instead of searching with your exact (and perhaps messy) question, the system uses an LLM to rewrite your query into a better search term or breaks it into multiple sub-questions.<br>
+</li>
+<li><strong>Reranking:</strong> The system might pull 50 snippets but then use a specialized Reranker model to score them again, keeping only the top 5 that actually answer the question. This solves the “lost in the middle” problem where LLMs ignore info buried in a long list of snippets.<br>
+</li>
+<li><strong>Knowledge Graphs:</strong> Instead of just text “chunks,” some systems retrieve relationships (e.g., “Company A acquired Company B”). This allows the LLM to understand context that a single snippet might miss.</li>
+<li><strong>Contextual Compression:</strong> Rather than injecting a whole page, the system summarises or extracts only the relevant sentences from a snippet to save space in the LLM’s “brain” (context window).</li>
+</ul>
+
+
 </section>
 </section>
 
