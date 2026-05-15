@@ -425,7 +425,9 @@ gtag('config', 'G-344M4P3CHH', { 'anonymize_ip': true});
 <span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="co"># - google-adk: This is the Agent Development Kit! It provides the building</span></span>
 <span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="co">#   blocks (like `Agent`, `Runner`, `Tool`) to structure our application.</span></span>
 <span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="op">!</span>pip install <span class="op">-</span>q pypdf google<span class="op">-</span>genai<span class="op">==</span><span class="fl">1.53.0</span> google<span class="op">-</span>adk<span class="op">==</span><span class="fl">1.20.0</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="co"># already installed in colab -&gt; # google-genai==1.68.0 google-adk==1.29.0</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="op">!</span>pip install <span class="op">-</span>q pypdf <span class="co"># for manipullating pdf files</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <div class="ansi-escaped-output">
 <pre>   <span class="ansi-bright-black-fg">━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━</span> <span class="ansi-green-fg">0.0/328.3 kB</span> <span class="ansi-red-fg">?</span> eta <span class="ansi-cyan-fg">-:--:--</span>
@@ -487,7 +489,7 @@ gtag('config', 'G-344M4P3CHH', { 'anonymize_ip': true});
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># --- 1a. Define the Agent ---</span></span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>lit_review_agent <span class="op">=</span> Agent(</span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>    name<span class="op">=</span><span class="st">"lit_review_agent"</span>, <span class="co">#required</span></span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>    model<span class="op">=</span><span class="st">"gemini-2.5-flash"</span>, <span class="co">#required</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>    model<span class="op">=</span><span class="st">"gemini-2.5-flash-lite"</span>, <span class="co">#required</span></span>
 <span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>    description<span class="op">=</span><span class="st">"A research assistant that finds recent scientific papers."</span>, <span class="co">#usefule for other agents</span></span>
 <span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>    instruction<span class="op">=</span><span class="st">"""</span></span>
 <span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="st">    You are a helpful research assistant.</span></span>
@@ -753,7 +755,7 @@ Querying API: https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&am
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co"># --- 2b. Define a New Agent that USES this tool ---</span></span>
 <span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>earthquake_agent <span class="op">=</span> Agent(</span>
 <span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>    name<span class="op">=</span><span class="st">"earthquake_agent"</span>,</span>
-<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>    model<span class="op">=</span><span class="st">"gemini-2.5-flash"</span>,</span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>    model<span class="op">=</span><span class="st">"gemini-3.1-flash-lite"</span>,</span>
 <span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>    description<span class="op">=</span><span class="st">"A seismology assistant that reports on earthquakes."</span>,</span>
 <span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>    instruction<span class="op">=</span><span class="st">"""</span></span>
 <span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a><span class="st">    You are a helpful seismology assistant.</span></span>
@@ -887,7 +889,7 @@ Querying API: https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&am
 <span id="cb28-42"><a href="#cb28-42" aria-hidden="true" tabindex="-1"></a><span class="co"># --- 3b. Define the Data-Extraction Agent ---</span></span>
 <span id="cb28-43"><a href="#cb28-43" aria-hidden="true" tabindex="-1"></a>detail_extractor_agent <span class="op">=</span> Agent(</span>
 <span id="cb28-44"><a href="#cb28-44" aria-hidden="true" tabindex="-1"></a>    name<span class="op">=</span><span class="st">"detail_extractor_agent"</span>,</span>
-<span id="cb28-45"><a href="#cb28-45" aria-hidden="true" tabindex="-1"></a>    model<span class="op">=</span><span class="st">"gemini-2.5-flash"</span>,</span>
+<span id="cb28-45"><a href="#cb28-45" aria-hidden="true" tabindex="-1"></a>    model<span class="op">=</span><span class="st">"gemini-3-flash-preview"</span>,</span>
 <span id="cb28-46"><a href="#cb28-46" aria-hidden="true" tabindex="-1"></a>    description<span class="op">=</span><span class="st">"An assistant that reads research papers."</span>,</span>
 <span id="cb28-47"><a href="#cb28-47" aria-hidden="true" tabindex="-1"></a>    instruction<span class="op">=</span><span class="st">"""</span></span>
 <span id="cb28-48"><a href="#cb28-48" aria-hidden="true" tabindex="-1"></a><span class="st">    You are an expert research assistant specializing in parsing</span></span>
@@ -1426,7 +1428,7 @@ Querying API: https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&am
 <span id="cb44-21"><a href="#cb44-21" aria-hidden="true" tabindex="-1"></a><span class="co"># 2. Reader: Reads the findings, extracts text, saves to state['paper_content']</span></span>
 <span id="cb44-22"><a href="#cb44-22" aria-hidden="true" tabindex="-1"></a>reader_agent <span class="op">=</span> Agent(</span>
 <span id="cb44-23"><a href="#cb44-23" aria-hidden="true" tabindex="-1"></a>    name<span class="op">=</span><span class="st">"reader_agent"</span>,</span>
-<span id="cb44-24"><a href="#cb44-24" aria-hidden="true" tabindex="-1"></a>    model<span class="op">=</span><span class="st">"gemini-2.0-flash"</span>,</span>
+<span id="cb44-24"><a href="#cb44-24" aria-hidden="true" tabindex="-1"></a>    model<span class="op">=</span><span class="st">"gemini-3-flash"</span>,</span>
 <span id="cb44-25"><a href="#cb44-25" aria-hidden="true" tabindex="-1"></a>    description<span class="op">=</span><span class="st">"Reads the PDF."</span>,</span>
 <span id="cb44-26"><a href="#cb44-26" aria-hidden="true" tabindex="-1"></a>    <span class="co"># We inject the previous agent's output using {research_findings}</span></span>
 <span id="cb44-27"><a href="#cb44-27" aria-hidden="true" tabindex="-1"></a>    instruction<span class="op">=</span><span class="st">"""</span></span>
