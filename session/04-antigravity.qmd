@@ -5,7 +5,14 @@ execute:
 
 # **Build with AI - AI-Assisted Research with Antigravity**
 
-Google’s new code editor, [**Antigravity**](https://antigravity.google/), is an AI-assisted IDE (Integrated Development Environment) with native agentic and generative AI capabilities built into the platform to rapidly accelerate computational and data driven development and scientific research. Antigravity is built on top of the Visual Studio Code editor for a familiar but accelerated user experience. The embedded agentic assistance allows users to spend more time solving research problems and less time debugging problematic code. This workshop is designed for researchers of all coding skill levels. We will walk through simple, research-grounded examples to help you fit the Antigravity framework immediately to your own projects. 
+Google’s code editor, [**Antigravity**](https://antigravity.google/product/antigravity-ide), is an AI-assisted IDE (Integrated Development Environment) with native agentic and generative AI capabilities built into the platform to rapidly accelerate computational and data driven development and scientific research. Antigravity is built on top of the Visual Studio Code editor for a familiar but accelerated user experience. The embedded agentic assistance allows users to spend more time solving research problems and less time debugging problematic code. Note the *Antigravity* product suite has evolved rapidly since launch and now includes:
+
+* Antigravity 2.0 - an agentic vibe 
+* Antigravity CLI - agentic capabilities built into the terminal
+* Antigravity SDK - simple Python scripts to iterate on agentic applications
+* Antigravity IDE - the original full featured Antigravity code editor and our focus for today. 
+
+This workshop is designed for researchers of all coding skill levels. We will walk through simple, research-grounded examples to help you fit the Antigravity framework immediately to your own projects. 
 
 **Instructor:**
 
@@ -23,7 +30,7 @@ Google’s new code editor, [**Antigravity**](https://antigravity.google/), is a
 
 
 ## Requirements
-Before the session please download and install Antigravity for your system by following the instructions here: [https://antigravity.google/download](https://antigravity.google/download)
+Before the session please download and install **Antigravity IDE** for your system by following the instructions here: [https://antigravity.google/download#antigravity-ide](https://antigravity.google/download#antigravity-ide)
 
 **Prerequisites:**
 
